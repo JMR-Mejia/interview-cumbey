@@ -12,13 +12,42 @@ client.connect();
 
 export const getAll = async (
   table: string,
-  field: string,
-  value: string
+  page: number,
+  order: string,
+  field?: string,
+  value?: string
 ): Promise<any[]> => {
-  const where: string = `WHERE ${field} = ${value}`;
+  const where: string = `WHERE ${field} iLIKE ${value}`;
   return client
-    .query(`SELECT * FROM ${table} ${!field || !value ? "" : where}`)
+    .query(
+      `
+    SELECT * FROM ${table}
+    ${!field || !value ? "" : where}
+    ORDER BY id ${order}
+    LIMIT 24
+    OFFSET ${(page - 1) * 24}
+    `
+    )
     .then((res) => res.rows)
+    .catch((e) => {
+      throw new Error(e);
+    });
+};
+
+export const count = async (
+  table: string,
+  field?: string,
+  value?: string
+): Promise<number> => {
+  const where: string = `WHERE ${field} iLIKE ${value}`;
+  return client
+    .query(
+      `
+  SELECT COUNT(*) FROM ${table}
+  ${!field || !value ? "" : where}
+  `
+    )
+    .then((res) => res.rows[0].count)
     .catch((e) => {
       throw new Error(e);
     });

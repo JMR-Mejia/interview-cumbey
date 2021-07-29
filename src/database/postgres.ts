@@ -24,7 +24,7 @@ export const getAll = async (
     });
 };
 
-export const get = async (table: string, id: number) => {
+export const get = async (table: string, id: number): Promise<any> => {
   return client
     .query(`SELECT * FROM ${table} WHERE id = ${id}`)
     .then((res) => res.rows[0])
@@ -33,7 +33,10 @@ export const get = async (table: string, id: number) => {
     });
 };
 
-export const create = async (table: string, values: string[]) => {
+export const create = async (
+  table: string,
+  values: string[]
+): Promise<number> => {
   return client
     .query(
       `INSERT INTO ${table}(
@@ -44,13 +47,16 @@ export const create = async (table: string, values: string[]) => {
   ) values ($1, $2, $3, $4) RETURNING *`,
       values
     )
-    .then((res) => res.rows[0])
+    .then((res) => res.rows[0].id)
     .catch((e) => {
       throw new Error(e);
     });
 };
 
-export const remove = async (table: string, id: number) => {
+export const remove = async (
+  table: string,
+  id: number
+): Promise<number | undefined> => {
   return client
     .query(`DELETE FROM ${table} WHERE id = ${id}`)
     .then((res) => {

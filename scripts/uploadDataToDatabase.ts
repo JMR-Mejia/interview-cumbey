@@ -1,21 +1,9 @@
 #!/usr/bin/env ts-node
 
 import fetch from "node-fetch";
-import { Client } from "pg";
-
-import { pgDatabase, pgHost, pgPassword, pgPort, pgUser } from "../src/config";
+import * as Database from "../src/database/postgres";
 
 const start: number = new Date().getTime();
-
-const client: Client = new Client({
-  user: pgUser,
-  host: pgHost,
-  database: pgDatabase,
-  password: pgPassword,
-  port: pgPort,
-});
-
-client.connect();
 
 async function uploadDataToDatabase() {
   let pageEquals: boolean = true;
@@ -32,20 +20,9 @@ async function uploadDataToDatabase() {
         item.nation.name,
         item.club.name,
       ];
-      await client
-        .query(
-          `
-          INSERT INTO players(
-            name,
-            position,
-            nation,
-            team
-          ) values ($1, $2, $3, $4) RETURNING *
-          `,
-          player
-        )
-        .then((res) => res.rows[0])
-        .catch((err) => console.error("\x1b[31m", err));
+      await Database.create("players", player).catch((err) =>
+        console.error("\x1b[31m", err)
+      );
     });
     pageEquals = page !== data.totalPages;
   }

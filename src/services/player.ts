@@ -3,6 +3,7 @@ import { BasePlayer, Player } from "../interface/player";
 import { Search } from "../interface/search";
 
 const table: string = "players";
+const fields: string = "name, position, nation, team"
 
 export const getPlayers = async (
   page: number,
@@ -17,6 +18,7 @@ export const getPlayers = async (
   }
   const player: Player[] = await Database.getAll(
     table,
+    fields,
     page,
     order,
     field,

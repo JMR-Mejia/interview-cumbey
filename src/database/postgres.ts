@@ -12,6 +12,7 @@ client.connect();
 
 export const getAll = async (
   table: string,
+  fields: string,
   page: number,
   order: string,
   field?: string,
@@ -21,7 +22,7 @@ export const getAll = async (
   return client
     .query(
       `
-    SELECT * FROM ${table}
+    SELECT ${fields} FROM ${table}
     ${!field || !value ? "" : where}
     ORDER BY id ${order}
     LIMIT 24

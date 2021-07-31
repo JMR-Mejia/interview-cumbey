@@ -42,6 +42,10 @@ Start the server in development:
 $ npm run dev
 ```
 
+## Docker 
+
+Use image in docker hub [here](https://hub.docker.com/r/jmrmejia/interview-cuemby).
+
 ## Use
 
 To use the endpoints in a simple way you can download them from this [drive](https://drive.google.com/drive/folders/1F1ykcMEHDySjhFr60DAdiYOIFHHjmcIC?usp=sharing) and import them into your postman.

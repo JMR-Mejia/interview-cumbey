@@ -50,6 +50,20 @@ Use image in docker hub [here](https://hub.docker.com/r/jmrmejia/interview-cuemb
 
 To use the endpoints in a simple way you can download them from this [drive](https://drive.google.com/drive/folders/1F1ykcMEHDySjhFr60DAdiYOIFHHjmcIC?usp=sharing) and import them into your postman.
 
+# Algorithm test
+
+You can use algorithm send the numbers as parameters:
+
+```
+$ npm run algorithm 1 3 3 8 4 3 2 3 3
+```
+
+or
+
+```
+$ node canBeSplitted.js 1 3 3 8 4 3 2 3 3
+```
+
 ## People
 
 The original author is [JMR-Mejia](https://github.com/JMR-Mejia)

@@ -1,7 +1,7 @@
 #!/usr/bin/env ts-node
 
 import fetch from "node-fetch";
-import * as Database from "../src/database/postgres";
+import * as Database from "../database/postgres";
 
 const start: number = new Date().getTime();
 

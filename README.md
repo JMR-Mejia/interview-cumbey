@@ -23,7 +23,7 @@ write your variable of environment.
 - **PB_PASSWORD**: the password of your database
 - **PB_HOST**: the host of your database
 - **PB_PORT**: the port of your database (if your host has SSL leave it empty)
-- **PB_NAME**: the name of your database
+- **PB_DATABASE**: the name of your database
 
 Note: Database used in this project is PostgreSQL
 
